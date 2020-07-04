@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/aws/aws-sdk-go/aws"
@@ -88,6 +89,7 @@ func (p *Plugin) Exec() error {
 			return fmt.Errorf("Can't update environment without environment name")
 		}
 
+		time.Sleep(15 * time.Second)
 		_, err = client.UpdateEnvironment(
 			&elasticbeanstalk.UpdateEnvironmentInput{
 				VersionLabel:    aws.String(p.VersionLabel),
